@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    {% load static %}
+    <link href="{% static 'css/styleshet.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Cranium</a>
+
+        <nav class="navbar">
+            <a href="{% url 'transfer'%}" style="--i:1">Make Payments</a>
+            <a href="{% url 'payout'%}" style="--i:2">Payout Options</a>
+            <a href="#" style="--i:3">Transactions History</a>
+            <a href="#" style="--i:4">Account</a>
+            <a href="{% url 'logout'%}" style="--i:5">Logout</a>
+        </nav>
+    </header>
+
+    <section class="registration-container">
+        <div class="registration-form">
+            <h4>Transfer EASE Personal AccountHolder Registration</h4>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                </div>
+                <div class="form-group">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <div class="link">
+                <a href="{% url 'login' %}">Already have an account? Log in</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Cranium Money Transfer - Secure, Fast, and Reliable Currency Transfers Worldwide.</p>
+            <p>Our platform offers seamless money transfer services, ensuring that your funds reach global destinations quickly and safely.</p>
+            <p>For assistance, contact our support team at <a href="mailto:support@cranium.com">support@cranium.com</a> or call us at +123-456-7890.</p>
+        </div>
+    </footer>
+</body>
+</html>

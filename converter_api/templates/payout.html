@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+    <title>Transfer Money</title>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Cranium</a>
+        <nav class="navbar">
+            <a href="{% url 'transfer' %}" style="--i:1" class="active">Make Payments</a>
+            <a href="{% url 'payout' %}" style="--i:2">Payout Options</a>
+            <a href="#" style="--i:3">Transactions History</a>
+            <a href="#" style="--i:4">Account</a> 
+            <a href="{% url 'logout'%}" style="--i:5">Logout</a>
+        </nav>
+    </header>
+
+    <h1>Transfer Money</h1>
+
+    <section class="home-pay" id="home-pay">
+        <form method="post" action="{% url 'payout' %}">
+            {% csrf_token %}
+            
+            <div class="form-container">
+                <!-- Sender Details Column -->
+                <div class="form-column">
+                    <fieldset>
+                        <legend>Sender Details</legend>
+                        <div class="form-group">
+                            <label for="first_name">First Name:</label>
+                            <input type="text" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name:</label>
+                            <input type="text" id="last_name" name="last_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_country">Phone Country Code:</label>
+                            <input type="text" id="phone_country" name="phone_country" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number:</label>
+                            <input type="text" id="phone_number" name="phone_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country:</label>
+                            <input type="text" id="country" name="country" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Street:</label>
+                            <input type="text" id="street" name="street" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal_code">Postal Code:</label>
+                            <input type="text" id="postal_code" name="postal_code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birth_date">Birth Date:</label>
+                            <input type="date" id="birth_date" name="birth_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="external_id">External ID:</label>
+                            <input type="text" id="external_id" name="external_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ip">IP Address:</label>
+                            <input type="text" id="ip" name="ip" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="metadata">Metadata (JSON):</label>
+                            <textarea id="metadata" name="metadata" rows="4" placeholder='{}'></textarea>
+                        </div>
+                    </fieldset>
+                </div>
+                
+                <!-- Recipient Details Column -->
+                <div class="form-column">
+                    <fieldset>
+                        <legend>Recipient Details</legend>
+                        <div class="form-group">
+                            <label for="requested_amount">Requested Amount:</label>
+                            <input type="number" id="requested_amount" name="requested_amount" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="requested_currency">Requested Currency:</label>
+                            <input type="text" id="requested_currency" name="requested_currency" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="payout_method">Payout Method Reference:</label>
+                            <input type="text" id="payout_method" name="payout_method" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="payin_type">Payin Type:</label>
+                            <input type="text" id="payin_type" name="payin_type" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number_payin">Phone Number for Payin:</label>
+                            <input type="text" id="phone_number_payin" name="phone_number_payin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile_provider">Mobile Provider:</label>
+                            <input type="text" id="mobile_provider" name="mobile_provider" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="input_currency">Input Currency:</label>
+                            <input type="text" id="input_currency" name="input_currency" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction_external_id">Transaction External ID:</label>
+                            <input type="text" id="transaction_external_id" name="transaction_external_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction_metadata">Transaction Metadata (JSON):</label>
+                            <textarea id="transaction_metadata" name="transaction_metadata" rows="4" placeholder='{}'></textarea>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            
+            <button type="submit">Transfer</button>
+        </form>
+    </section>
+</body>
+</html>
