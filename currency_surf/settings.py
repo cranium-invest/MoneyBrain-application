@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-3wv9f04xf%(*738^wlz-y%p0c_-&ozwlhu6k)#k(64cb1c*+g2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,12 +82,8 @@ WSGI_APPLICATION = 'currency_surf.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CurrencyAppDB',
-        'USER': 'postgres',
-        'PASSWORD': 'zeneth',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
