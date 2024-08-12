@@ -105,8 +105,11 @@ body {
     display: none;
     flex-direction: column; /* Align buttons vertically */
     align-items: center; /* Center them horizontally */
-    overflow-y: auto;
+    max-height: 300px; /* Set the maximum height for the container */
+    overflow-y: auto; /* Adds a vertical scrollbar when content overflows */
+    overflow-x: hidden; /* Hide horizontal scrollbar (optional) */
 }
+
 
 .paypal-buttons button {
     transform: scale(0.1); /* Adjust to make the button smaller */

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/pal.css' %}">
+    <title>PayPal Payouts</title>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Cranium</a>
+    
+        <nav class="navbar">
+            <a href="{% url 'transfer' %}" class="active">Make Payments</a>
+            <a href="{% url 'payout' %}">Payout ZAZ</a>
+            <a href="{% url 'payout_form' %}">Payout PayPal</a>
+            <a href="#">Transactions History</a>
+            <a href="#">Account</a>
+
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <a href="#" id="user-menu">{{ user.username }}</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main class="container">
+        <h1>PayPal Payouts</h1>
+        <form id="payoutForm">
+            <fieldset>
+                <legend>Sender Batch Header</legend>
+                <label for="batch_id">Sender Batch ID:</label>
+                <input type="text" id="batch_id" name="batch_id" class="input-field" required>
+                
+                <label for="email_subject">Email Subject:</label>
+                <input type="text" id="email_subject" name="email_subject" class="input-field" required>
+                
+                <label for="email_message">Email Message:</label>
+                <textarea id="email_message" name="email_message" class="input-field" required></textarea>
+            </fieldset>
+
+            <fieldset id="payoutItems">
+                <legend>Payout Items</legend>
+                <div class="item">
+                    <label for="recipient_type">Recipient Type:</label>
+                    <select id="recipient_type" name="recipient_type" class="input-field" required>
+                        <option value="EMAIL">Email</option>
+                        <option value="PHONE">Phone</option>
+                        <option value="PAYPAL_ID">PayPal ID</option>
+                    </select>
+
+                    <label for="amount_value">Amount:</label>
+                    <input type="number" id="amount_value" name="amount_value" step="0.01" class="input-field" required>
+
+                    <label for="amount_currency">Currency:</label>
+                    <input type="text" id="amount_currency" name="amount_currency" value="USD" class="input-field" required>
+
+                    <label for="note">Note:</label>
+                    <input type="text" id="note" name="note" class="input-field" required>
+
+                    <label for="sender_item_id">Sender Item ID:</label>
+                    <input type="text" id="sender_item_id" name="sender_item_id" class="input-field" required>
+
+                    <label for="receiver">Receiver:</label>
+                    <input type="text" id="receiver" name="receiver" class="input-field" required>
+
+                    <label for="alternate_notification_phone">Alternate Notification Phone (Optional):</label>
+                    <input type="text" id="alternate_notification_phone" name="alternate_notification_phone" class="input-field">
+
+                    <label for="notification_language">Notification Language:</label>
+                    <input type="text" id="notification_language" name="notification_language" value="en-US" class="input-field" required>
+                </div>
+                <!-- Add more .item divs for additional payout items -->
+            </fieldset>
+
+            <button type="button" class="submit-button" onclick="submitPayoutForm()">Submit Payouts</button>
+        </form>
+    </main>
+    
+    <script>
+        function submitPayoutForm() {
+            const items = Array.from(document.querySelectorAll('#payoutItems .item')).map(item => ({
+                recipient_type: item.querySelector('#recipient_type').value,
+                amount: {
+                    value: item.querySelector('#amount_value').value,
+                    currency: item.querySelector('#amount_currency').value
+                },
+                note: item.querySelector('#note').value,
+                sender_item_id: item.querySelector('#sender_item_id').value,
+                receiver: item.querySelector('#receiver').value,
+                alternate_notification_phone: item.querySelector('#alternate_notification_phone').value || null,
+                notification_language: item.querySelector('#notification_language').value
+            }));
+
+            const formData = {
+                sender_batch_header: {
+                    sender_batch_id: document.getElementById('batch_id').value,
+                    email_subject: document.getElementById('email_subject').value,
+                    email_message: document.getElementById('email_message').value
+                },
+                items: items
+            };
+
+            fetch('/api/test-create-payout/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Payout created successfully! Payout ID: ' + data.payout_id);
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log In with PayPal</title>
+</head>
+<body>
+    <div id="paypal-login-container"></div>
+
+    <script src="https://www.paypalobjects.com/payouts/js/payouts_aac.js"></script>
+    <script>
+        paypal.PayoutsAAC.render({
+            env: "sandbox",
+            clientId: {
+                production: "",
+                sandbox: "ATh5idjKiAZa-dmnpO5pTgkOBOkjgufseTxsd4a2hpy34xC0-DmfFyx23NucPnBPs_bcTsyPXW3rmE9k"
+            },
+            merchantId: "6HS2H79TR25UC",
+            pageType: "login",
+            onLogin: function(response) {
+                if (response.err) {
+                    console.error(response.err);
+                } else {
+                    // Handle login response
+                    console.log(response.body.code);
+                    window.location.href = '/paypal/callback/?code=' + response.body.code;
+                }
+            }
+        }, '#paypal-login-container');
+    </script>
+</body>
+</html>

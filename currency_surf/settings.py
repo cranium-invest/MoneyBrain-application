@@ -140,14 +140,19 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-PAYPAL_CLIENT_ID = 'ASvWV0sPqo3DgYpVyk4mQALw0KEVI7RoNAaGzoVxunTe3_R8wMbzZM3-6U9N22K0Fo1JG3oO_gtLFcwg'
-PAYPAL_CLIENT_SECRET = 'ASvWV0sPqo3DgYpVyk4mQALw0KEVI7RoNAaGzoVxunTe3_R8wMbzZM3-6U9N22K0Fo1JG3oO_gtLFcwg'
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/registration/login/'
+
+PAYPAL_CLIENT_ID = 'ATh5idjKiAZa-dmnpO5pTgkOBOkjgufseTxsd4a2hpy34xC0-DmfFyx23NucPnBPs_bcTsyPXW3rmE9k'
+PAYPAL_CLIENT_SECRET = 'ENMiubCDkzIehpUEOFDGHA_wWcBhpzj-xtb7pmebvkATEJT3akrJqe8XAVcLpSnFcI9pDzng6IBG42AU'
 PAYPAL_MODE = 'sandbox'
+
+import base64
+PAYPAL_AUTH_HEADER = base64.b64encode(f'{PAYPAL_CLIENT_ID}:{PAYPAL_CLIENT_SECRET}'.encode()).decode('utf-8')
 
 AZA_API_KEY = 'gDhUJ08ACADaESduvV9euaXqRE55r0hsUaUsxKkxwyPN1ES/yY6pdI1txn6lysEuZZIa5u0RQF8uflbBSoIpyA=='
 AZA_API_SECRET = 'DmJd4rwUU+h43klYes5okPFHpK1fwHE05wxi5ujneFqDMZT0beC+0Vk2yCwq5hB4WhCbGHqEPG8yixeqaVEUmA=='
 AZA_BASE_URL = 'https://api-sandbox.transferzero.com/v1'
 
-LOGIN_REDIRECT_URL = '/'
-
-LOGOUT_REDIRECT_URL = '/registration/login/'
+TRANSFERZERO_API_KEY = 'gDhUJ08ACADaESduvV9euaXqRE55r0hsUaUsxKkxwyPN1ES/yY6pdI1txn6lysEuZZIa5u0RQF8uflbBSoIpyA=='

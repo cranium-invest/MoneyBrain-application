@@ -3,20 +3,34 @@
 <head>
     <title>Login</title>
     {% load static %}
-    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/trans.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <header class="header">
         <a href="#" class="logo">Cranium</a>
-
+    
         <nav class="navbar">
-            <a href="{% url 'transfer'%}" style="--i:1">Make Payments</a>
-            <a href="{% url 'payout'%}" style="--i:2">Payout Options</a>
+            <a href="{% url 'transfer' %}" style="--i:1" class="active">Make Payments</a>
+            <a href="{% url 'payout' %}" style="--i:2">Payout ZAZ</a>
+            <a href="{% url 'payout_form' %}" style="--i:2">Payout PayPal</a>
             <a href="#" style="--i:3">Transactions History</a>
             <a href="#" style="--i:4">Account</a>
-            <a href="{% url 'logout'%}" style="--i:5">Logout</a>
+    
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <a href="#" id="user-menu">{{ user.username }}</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" style="--i:5">Login</a>
+            {% endif %}
         </nav>
     </header>
+    
 
     <section class="login-container">
         <div class="login-form">
@@ -36,13 +50,20 @@
             <div class="link">
                 <a href="{% url 'register' %}">Don't have an account? Register</a>
             </div>
+            <div class="link">
+                <a href="{% url 'paypal_authorize'%}">
+                    <i class="fab fa-paypal" style="font-size: 24px; vertical-align: middle;"></i>
+                    Login with PayPal
+                </a>
+            </div>
+            
         </div>
     </section>
 
     <footer class="footer">
         <div class="footer-content">
             <p>Cranium Money Transfer - Secure, Fast, and Reliable Currency Transfers Worldwide.</p>
-            <p>For assistance, contact our support team at <a href="mailto:support@cranium.com">support@cranium.com</a> or call us at +123-456-7890.</p>
+            <p>For assistance, contact our support team at <a href="https://cranium-invest.co.za/">admin@cranium-invest.co.za </a> or call us at +27 75 023 1943. &copy; 2024 Cranium. All rights reserved.</p>
         </div>
     </footer>
 </body>

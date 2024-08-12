@@ -3,21 +3,33 @@
 <head>
     {% load static %}
     <title>Transfer Money</title>
-    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/trans.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
     
     <header class="header">
         <a href="#" class="logo">Cranium</a>
-
+    
         <nav class="navbar">
-            <a href="{% url 'transfer'%} style="--i:1" class="active">Make Payments</a>
-            <a href="{% url 'payout'%}" style="--i:2">Payout Options</a>
+            <a href="{% url 'transfer' %}" style="--i:1" class="active">Make Payments</a>
+            <a href="{% url 'payout' %}" style="--i:2">Payout ZAZ</a>
+            <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
             <a href="#" style="--i:3">Transactions History</a>
-            <a href="#" style="--i:4">Account</a> 
-            <a href="{% url 'logout'%}" style="--i:5">Logout</a>
+            <a href="#" style="--i:4">Account</a>
+    
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <a href="#" id="user-menu">{{ user.username }}</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" style="--i:5">Login</a>
+            {% endif %}
         </nav>
     </header>
+    
 
     <section class="home" id="home">
         <h4>Make Payments To <span>Global Accounts</span></h4>
@@ -81,14 +93,26 @@
 
     </script>
     </section>
-    <footer class="footer">
-        <div class="footer-content">
+    
+        <div class="last-text-fot">
             <p>Cranium Money Transfer - Secure, Fast, and Reliable Currency Transfers Worldwide.</p>
             <p>Our platform offers seamless money transfer services, ensuring that your funds reach global destinations quickly and safely.</p>
-            <p>For assistance, contact our support team at <a href="mailto:support@cranium.com">support@cranium.com</a> or call us at +123-456-7890.</p>
+            <p>For assistance, contact our support team at <a href="mailto:admin@cranium-invest.co.za">admin@cranium-invest.co.za</a> or call us at +27 75 023 1943.</p>
         </div>
-    </footer>
     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userMenu = document.getElementById('user-menu');
+            const logoutLink = document.getElementById('logout-link');
+    
+            if (userMenu) {
+                userMenu.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    logoutLink.style.display = logoutLink.style.display === 'block' ? 'none' : 'block';
+                });
+            }
+        });
+    </script>
     
 </body>
 </html>
