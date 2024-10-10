@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Initiate Collection</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/azastyle.css' %}">
+</head>
+<body>
+
+    <section>
+        <header class="header">
+            <a href="#" class="logo">Money Brain <img src="{% static 'images/caraniumLog.png'%}" alt="Logo" class="logo-image"></a>
+    
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    
+            <nav class="navbar" id="navbar">
+                <a href="{% url 'eco_info' %}" style="--i:1">Eco Payments</a>
+                <a href="{% url 'payout' %}" style="--i:2">Payout AZA</a>
+                <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
+                <a href="{% url 'list_transactions'%}" style="--i:3">Transactions History</a>
+                <a href="{% url 'account_information' %}" style="--i:4" class="active">Account</a>
+    
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" id="user-menu">{{ user.username }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" style="--i:5">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+    </section>
+
+    <section class="moneygram-container">
+    <h4>Initiate GHS Mobile Collection</h4>
+    
+    <form method="post" enctype="multipart/form-data" action="{% url 'initiate_collection' %}" class="moneygram-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    </section>
+    <div class="last-text-fot">
+        <p>The Check Deposit feature in the Cranium app provides a convenient way for users to deposit checks directly into their Cranium account using their mobile device or computer. </p>
+        <p>This feature allows users to streamline their banking activities by eliminating the need to visit a physical bank branch.</p>
+        <p>&copy; 2024 Cranium. All rights reserved.</p>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.classList.contains("show")) {
+                navbar.classList.remove("show");
+            } else {
+                navbar.classList.add("show");
+            }
+        }
+
+    </script>
+</body>
+</html>

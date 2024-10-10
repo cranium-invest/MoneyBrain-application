@@ -3,84 +3,237 @@
 <head>
     <title>Register</title>
     {% load static %}
-    <link href="{% static 'css/trans.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/ecos.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header class="header">
         <a href="#" class="logo">Cranium</a>
     
-        <nav class="navbar">
-            <a href="{% url 'transfer' %}" style="--i:1" class="active">Make Payments</a>
-            <a href="{% url 'payout' %}" style="--i:2">Payout ZAZ</a>
-            <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
-            <a href="#" style="--i:3">Transactions History</a>
-            <a href="#" style="--i:4">Account</a>
-    
-            {% if user.is_authenticated %}
-                <div class="dropdown">
-                    <a href="#" id="user-menu">{{ user.username }}</a>
-                    <div class="dropdown-content">
-                        <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+        <header class="header">
+            <a href="#" class="logo">Money Brain <img src="{% static 'images/caraniumLog.png'%}" alt="Logo" class="logo-image"></a>
+
+        
+            <nav class="navbar">
+                <a href="{% url 'eco_info' %}" style="--i:1">Eco Payments</a>
+                <a href="{% url 'payout' %}" style="--i:2">Payout AZA</a>
+                <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
+                <a href="#" style="--i:3">Transactions History</a>
+                <a href="{% url 'account_information' %}" style="--i:4" class="active">Account</a>
+        
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" id="user-menu">{{ user.username }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                        </div>
                     </div>
-                </div>
-            {% else %}
-                <a href="{% url 'login' %}" style="--i:5">Login</a>
-            {% endif %}
-        </nav>
+                {% else %}
+                    <a href="{% url 'login' %}" style="--i:5">Login</a>
+                {% endif %}
+            </nav>
+        </header>
     </header>
     
     <section>
         <br>
         <p>
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
         </p>
         <p>
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
         </p>
         <p>
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
-            Hello we Welcome you to Cranium. Your Favourite international funds application.
-
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+        <br>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
         </p>
     </section>
 
     <section class="registration-container">
         <div class="registration-form">
-            <h4>Transfer EASE Personal AccountHolder Registration</h4>
+            <h4>Money Brain Account Registration</h4>
             <form method="post">
                 {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        {% for error in form.non_field_errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
                 <div class="form-group">
                     {{ form.username.label_tag }}
                     {{ form.username }}
+                    {% if form.username.errors %}
+                        <div class="field-error">
+                            {% for error in form.username.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
+                
                 <div class="form-group">
                     {{ form.email.label_tag }}
                     {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="field-error">
+                            {% for error in form.email.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
+                
                 <div class="form-group">
                     {{ form.password1.label_tag }}
                     {{ form.password1 }}
+                    {% if form.password1.errors %}
+                        <div class="field-error">
+                            {% for error in form.password1.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
+                
                 <div class="form-group">
                     {{ form.password2.label_tag }}
                     {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <div class="field-error">
+                            {% for error in form.password2.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
+                
                 <button type="submit">Register</button>
             </form>
             <div class="link">
@@ -88,6 +241,7 @@
             </div>
         </div>
     </section>
+    
 
         <div class="last-text-fot">
             <p>Cranium Money Transfer - Secure, Fast, and Reliable Currency Transfers Worldwide.</p>

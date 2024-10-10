@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Senders List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Senders List</h1>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sender in senders %}
+                    <tr>
+                        <td>{{ sender.id }}</td>
+                        <td>{{ sender.first_name }}</td>
+                        <td>{{ sender.last_name }}</td>
+                        <td>{{ sender.email }}</td>
+                        <td>{{ sender.international_phone_number }}</td>
+                        <td>{{ sender.country }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div>
+            <p>Page {{ pagination.current_page }} of {{ pagination.total_pages }}</p>
+            <a href="?page={{ pagination.prev_page }}">Previous</a> |
+            <a href="?page={{ pagination.next_page }}">Next</a>
+        </div>
+    {% endif %}
+</body>
+</html>

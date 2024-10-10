@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="sender_info" placeholder="Sender Information">
+    <input type="text" name="receiver_info" placeholder="Receiver Information">
+    <button type="submit">Complete Transaction</button>
+</form>

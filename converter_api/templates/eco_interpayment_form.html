@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static%}
+    <title>Cross-Border Payment Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/ecos.css' %}">
+</head>
+<body>
+
+    <section>
+        <header class="header">
+            <a href="#" class="logo">Money Brain <img src="{% static 'images/caraniumLog.png'%}" alt="Logo" class="logo-image"></a>
+    
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    
+            <nav class="navbar" id="navbar">
+                <a href="{% url 'eco_info' %}" style="--i:1">Eco Payments</a>
+                <a href="{% url 'payout' %}" style="--i:2">Payout AZA</a>
+                <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
+                <a href="{% url 'list_transactions'%}" style="--i:3">Transactions History</a>
+                <a href="{% url 'account_information' %}" style="--i:4" class="active">Account</a>
+    
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" id="user-menu">{{ user.username }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" style="--i:5">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+    </section>
+
+    
+    <p>
+
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+
+        <p>
+        
+    </p>
+    <p>
+
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+
+    </p>
+    <p>
+        
+    </p>
+
+<div class="moneygram-container">
+
+    <h4>Cross-Border Payment Form</h4>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-sections">
+            <div class="form-section sender-section">
+                <h2>Sender Details</h2>
+                <label for="{{ form.sender_first_name.id_for_label }}">{{ form.sender_first_name.label }}</label>
+                {{ form.sender_first_name }}
+                
+                <label for="{{ form.sender_last_name.id_for_label }}">{{ form.sender_last_name.label }}</label>
+                {{ form.sender_last_name }}
+    
+                <label for="{{ form.sender_dob.id_for_label }}">{{ form.sender_dob.label }}</label>
+                {{ form.sender_dob }}
+                
+                <label for="{{ form.sender_gender.id_for_label }}">{{ form.sender_gender.label }}</label>
+                {{ form.sender_gender }}
+                
+                <label for="{{ form.sender_id_type.id_for_label }}">{{ form.sender_id_type.label }}</label>
+                {{ form.sender_id_type }}
+                
+                <label for="{{ form.sender_id_number.id_for_label }}">{{ form.sender_id_number.label }}</label>
+                {{ form.sender_id_number }}
+    
+                <label for="{{ form.sender_id_expiry_date.id_for_label }}">{{ form.sender_id_expiry_date.label }}</label>
+                {{ form.sender_id_expiry_date }}
+    
+                <label for="{{ form.sender_residential_address.id_for_label }}">{{ form.sender_residential_address.label }}</label>
+                {{ form.sender_residential_address }}
+    
+                <label for="{{ form.sender_phone_number.id_for_label }}">{{ form.sender_phone_number.label }}</label>
+                {{ form.sender_phone_number }}
+    
+                <label for="{{ form.sender_nationality.id_for_label }}">{{ form.sender_nationality.label }}</label>
+                {{ form.sender_nationality }}
+    
+                <label for="{{ form.sender_ccy.id_for_label }}">{{ form.sender_ccy.label }}</label>
+                {{ form.sender_ccy }}
+    
+                <label for="{{ form.source_bank.id_for_label }}">{{ form.source_bank.label }}</label>
+                {{ form.source_bank }}
+    
+                <label for="{{ form.source_country.id_for_label }}">{{ form.source_country.label }}</label>
+                {{ form.source_country }}
+            </div>
+    
+            <div class="form-section receiver-section">
+                <h2>Receiver Details</h2>
+                <label for="{{ form.receiver_first_name.id_for_label }}">{{ form.receiver_first_name.label }}</label>
+                {{ form.receiver_first_name }}
+    
+                <label for="{{ form.receiver_last_name.id_for_label }}">{{ form.receiver_last_name.label }}</label>
+                {{ form.receiver_last_name }}
+    
+                <label for="{{ form.receiver_dob.id_for_label }}">{{ form.receiver_dob.label }}</label>
+                {{ form.receiver_dob }}
+    
+                <label for="{{ form.receiver_gender.id_for_label }}">{{ form.receiver_gender.label }}</label>
+                {{ form.receiver_gender }}
+    
+                <label for="{{ form.receiver_id_type.id_for_label }}">{{ form.receiver_id_type.label }}</label>
+                {{ form.receiver_id_type }}
+    
+                <label for="{{ form.receiver_id_number.id_for_label }}">{{ form.receiver_id_number.label }}</label>
+                {{ form.receiver_id_number }}
+    
+                <label for="{{ form.receiver_id_expiry_date.id_for_label }}">{{ form.receiver_id_expiry_date.label }}</label>
+                {{ form.receiver_id_expiry_date }}
+    
+                <label for="{{ form.receiver_residential_address.id_for_label }}">{{ form.receiver_residential_address.label }}</label>
+                {{ form.receiver_residential_address }}
+    
+                <label for="{{ form.receiver_phone_number.id_for_label }}">{{ form.receiver_phone_number.label }}</label>
+                {{ form.receiver_phone_number }}
+    
+                <label for="{{ form.receiver_nationality.id_for_label }}">{{ form.receiver_nationality.label }}</label>
+                {{ form.receiver_nationality }}
+    
+                <label for="{{ form.receiver_ccy.id_for_label }}">{{ form.receiver_ccy.label }}</label>
+                {{ form.receiver_ccy }}
+            </div>
+    
+            <div class="form-section additional-info">
+                <h2>Transaction Details</h2>
+                <label for="{{ form.destination_bank.id_for_label }}">{{ form.destination_bank.label }}</label>
+                {{ form.destination_bank }}
+    
+                <label for="{{ form.destination_account_number.id_for_label }}">{{ form.destination_account_number.label }}</label>
+                {{ form.destination_account_number }}
+    
+                <label for="{{ form.destination_country.id_for_label }}">{{ form.destination_country.label }}</label>
+                {{ form.destination_country }}
+    
+                <label for="{{ form.purpose.id_for_label }}">{{ form.purpose.label }}</label>
+                {{ form.purpose }}
+    
+                <label for="{{ form.narration.id_for_label }}">{{ form.narration.label }}</label>
+                {{ form.narration }}
+    
+                <label for="{{ form.amount.id_for_label }}">{{ form.amount.label }}</label>
+                {{ form.amount }}
+    
+                <label for="{{ form.currency.id_for_label }}">{{ form.currency.label }}</label>
+                {{ form.currency }}
+    
+                <label for="{{ form.batchid.id_for_label }}">{{ form.batchid.label }}</label>
+                {{ form.batchid }}
+    
+                <label for="{{ form.affiliate_code.id_for_label }}">{{ form.affiliate_code.label }}</label>
+                {{ form.affiliate_code }}
+    
+                <label for="{{ form.product.id_for_label }}">{{ form.product.label }}</label>
+                {{ form.product }}
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    
+</div>
+    <div class="last-text-fot">
+        <p>The Check Deposit feature in the Cranium app provides a convenient way for users to deposit checks directly into their Cranium account using their mobile device or computer. </p>
+        <p>This feature allows users to streamline their banking activities by eliminating the need to visit a physical bank branch.</p>
+        <p><span class="span-m">&copy; {{ current_year }} Cranium. All rights reserved.</span></p>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.classList.contains("show")) {
+                navbar.classList.remove("show");
+            } else {
+                navbar.classList.add("show");
+            }
+        }
+
+    </script>
+</body>
+</html>

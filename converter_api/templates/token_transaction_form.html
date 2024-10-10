@@ -1,0 +1,7 @@
+<h1>Token Transaction Form</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Transaction</button>
+</form>

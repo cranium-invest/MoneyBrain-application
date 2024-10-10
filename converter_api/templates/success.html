@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sender Successfully Created</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/azastyle.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <section>
+        <header class="header">
+            <a href="#" class="logo">Money Brain <img src="{% static 'images/caraniumLog.png'%}" alt="Logo" class="logo-image"></a>
+    
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    
+            <nav class="navbar" id="navbar">
+                <a href="{% url 'eco_info' %}" style="--i:1">Eco Payments</a>
+                <a href="{% url 'payout' %}" style="--i:2">Payout AZA</a>
+                <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
+                <a href="{% url 'list_transactions'%}" style="--i:3">Transactions History</a>
+                <a href="{% url 'account_information' %}" style="--i:4" class="active">Account</a>
+    
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" id="user-menu">{{ user.username }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" style="--i:5">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+    </section>
+
+    <section class="moneygram-container">
+        <h4 style="display: inline; border-bottom: 1px dashed #000; padding-bottom: 2px;">Sender Created Successfully</h4>
+        <form action="{% url 'save_sender' %}" method="post">
+            {% csrf_token %}
+            <div class="sender-details">
+                <input type="hidden" name="sender_id" value="{{ data.object.id }}">
+                <input type="hidden" name="type" value="{{ data.object.type }}">
+                <input type="hidden" name="state" value="{{ data.object.state }}">
+                <input type="hidden" name="country" value="{{ data.object.country }}">
+                <input type="hidden" name="street" value="{{ data.object.street }}">
+                <input type="hidden" name="postal_code" value="{{ data.object.postal_code }}">
+                <input type="hidden" name="city" value="{{ data.object.city }}">
+                <input type="hidden" name="phone_country" value="{{ data.object.phone_country }}">
+                <input type="hidden" name="phone_number" value="{{ data.object.phone_number }}">
+                <input type="hidden" name="email" value="{{ data.object.email }}">
+                <input type="hidden" name="ip" value="{{ data.object.ip }}">
+                <input type="hidden" name="first_name" value="{{ data.object.first_name }}">
+                <input type="hidden" name="last_name" value="{{ data.object.last_name }}">
+                <input type="hidden" name="birth_date" value="{{ data.object.birth_date }}">
+                <input type="hidden" name="onboarding_status" value="{{ data.object.onboarding_status }}">
+                <input type="hidden" name="external_id" value="{{ data.object.external_id }}">
+                <input type="hidden" name="international_phone_number" value="{{ data.object.international_phone_number }}">
+
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #08fa14;" title="Information"></i><strong> ID:</strong> {{ data.object.id }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #ff9f0f;" title="Information"></i><strong> Country:</strong> {{ data.object.country }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #ff9f0f;" title="Information"></i><strong> Street:</strong> {{ data.object.street }}</p>
+                <p><strong>Postal Code:</strong> {{ data.object.postal_code }}</p>
+                <p><strong>City:</strong> {{ data.object.city }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #08fa14;" title="Information"></i><strong> Phone Country:</strong> {{ data.object.phone_country }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #0885fa;" title="Information"></i><strong> Phone Number:</strong> {{ data.object.phone_number }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #dc2f2f; " title="Information"></i><strong> Email:</strong> {{ data.object.email }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #08fa14;" title="Information"></i><strong> First Name:</strong> {{ data.object.first_name }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #08fa14;" title="Information"></i><strong> Last Name:</strong> {{ data.object.last_name }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #ff9f0f;" title="Information"></i><strong> Birth Date:</strong> {{ data.object.birth_date }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #ff9f0f;" title="Information"></i><strong> Onboarding Status:</strong> {{ data.object.onboarding_status }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #08fa14;" title="Information"></i><strong> External ID:</strong> {{ data.object.external_id }}</p>
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: #dc2f2f; " title="Information"></i><strong> International Phone Number:</strong> {{ data.object.international_phone_number }}</p>
+            </div>
+
+            <button type="submit" style="background-color: #333; font-size: 11px; width: 50%;">Done</button><br>
+            <p><i class="fas fa-info-circle" style="font-size: 1em; color: #f02f8f;" title="Information"></i> Please press done for user to be saved successfully, and your Transactions to be completed.</p>
+        </form>
+    </section>
+    <div class="last-text-fot">
+        <p>The Check Deposit feature in the Cranium app provides a convenient way for users to deposit checks directly into their Cranium account using their mobile device or computer.</p>
+        <p>This feature allows users to streamline their banking activities by eliminating the need to visit a physical bank branch.</p>
+        <p>&copy; 2024 Cranium. All rights reserved.</p>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </div>
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.classList.contains("show")) {
+                navbar.classList.remove("show");
+            } else {
+                navbar.classList.add("show");
+            }
+        }
+
+    </script>
+</body>
+</html>

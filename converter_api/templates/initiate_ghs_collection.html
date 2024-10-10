@@ -1,0 +1,16 @@
+<!-- initiate_ghs_collection.html -->
+<form method="POST">
+    {% csrf_token %}
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number" required>
+
+    <label for="mobile_provider">Mobile Provider:</label>
+    <select id="mobile_provider" name="mobile_provider" required>
+        <option value="vodafone">Vodafone</option>
+        <option value="mtn">MTN</option>
+        <option value="tigo">Tigo</option>
+        <option value="airtel">Airtel</option>
+    </select>
+
+    <button type="submit">Initiate Collection</button>
+</form>

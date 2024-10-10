@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>EcoCash Transfer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/ecos.css' %}">
+</head>
+<body>
+
+    <section>
+        <header class="header">
+            <a href="#" class="logo">Money Brain <img src="{% static 'images/caraniumLog.png'%}" alt="Logo" class="logo-image"></a>
+    
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    
+            <nav class="navbar" id="navbar">
+                <a href="{% url 'eco_info' %}" style="--i:1">Eco Payments</a>
+                <a href="{% url 'payout' %}" style="--i:2">Payout AZA</a>
+                <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
+                <a href="{% url 'list_transactions'%}" style="--i:3">Transactions History</a>
+                <a href="{% url 'account_information' %}" style="--i:4" class="active">Account</a>
+    
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" id="user-menu">{{ user.username }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" style="--i:5">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+    </section>
+
+    <p>
+
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    <div class="moneygram-container">
+
+        <section class="notification-banner">
+            <div class="notification-content">
+                <p><i class="fas fa-info-circle" style="font-size: 1em; color: white;" title="Information"></i>
+                    To use EcoCash in our app, log in and navigate to the EcoCash Transfer section. Fill out the recipient and sender details, enter the transfer amount, and submit the form. Track your transfer status in the "Transaction History" section.</p>
+            </div>
+        </section>
+
+        <h4>Make Payments with EcoCash</h4>
+        <form method="post" class="eco-form">
+            {% csrf_token %}
+            <div class="form-sections">
+                <div class="form-section sender-section">
+                    <h2>Sender Details</h2>
+                    {{ form.sender_first_name.label_tag }} {{ form.sender_first_name }}
+                    {{ form.sender_last_name.label_tag }} {{ form.sender_last_name }}
+                    {{ form.sender_phone_number.label_tag }} {{ form.sender_phone_number }}
+                    {{ form.sender_residential_address.label_tag }} {{ form.sender_residential_address }}
+                    {{ form.sender_id_type.label_tag }} {{ form.sender_id_type }}
+                    {{ form.sender_id_number.label_tag }} {{ form.sender_id_number }}
+                    {{ form.sender_id_expiry_date.label_tag }} {{ form.sender_id_expiry_date }}
+                    {{ form.sender_dob.label_tag }} {{ form.sender_dob }}
+                    {{ form.sender_nationality.label_tag }} {{ form.sender_nationality }}
+                </div>
+        
+                <div class="form-section receiver-section">
+                    <h2>Receiver Details</h2>
+                    {{ form.recipient_first_name.label_tag }} {{ form.recipient_first_name }}
+                    {{ form.recipient_last_name.label_tag }} {{ form.recipient_last_name }}
+                    {{ form.recipient_residential_address.label_tag }} {{ form.recipient_residential_address }}
+                    {{ form.recipient_id_type.label_tag }} {{ form.recipient_id_type }}
+                    {{ form.recipient_id_expiry_date.label_tag }} {{ form.recipient_id_expiry_date }}
+                    {{ form.recipient_dob.label_tag }} {{ form.recipient_dob }}
+                    {{ form.receiver_phone_number.label_tag }} {{ form.receiver_phone_number }}
+                    {{ form.receiver_nationality.label_tag }} {{ form.receiver_nationality }}
+                </div>
+        
+                <div class="form-section additional-info">
+                    {{ form.amount.label_tag }} {{ form.amount }}
+                    {{ form.currency.label_tag }} {{ form.currency }}
+                    {{ form.sender_currency.label_tag }} {{ form.sender_currency }}
+                    {{ form.receiver_currency.label_tag }} {{ form.receiver_currency }}
+                    {{ form.destination_account_number.label_tag }} {{ form.destination_account_number }}
+                    {{ form.destination_country.label_tag }} {{ form.destination_country }}
+                    {{ form.destination_bank.label_tag }} {{ form.destination_bank }}
+                    {{ form.source_country.label_tag }} {{ form.source_country }}
+                    {{ form.source_bank.label_tag }} {{ form.source_bank }}
+                    {{ form.narration.label_tag }} {{ form.narration }}
+                    {{ form.exchange_rate.label_tag }} {{ form.exchange_rate }}
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        
+    </div>
+
+    <div class="last-text-fot">
+        <p>The Check Deposit feature in the Cranium app provides a convenient way for users to deposit checks directly into their Cranium account using their mobile device or computer. </p>
+        <p>This feature allows users to streamline their banking activities by eliminating the need to visit a physical bank branch.</p>
+        <p><span class="span-m">&copy; {{ current_year }} Cranium. All rights reserved.</span></p>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.classList.contains("show")) {
+                navbar.classList.remove("show");
+            } else {
+                navbar.classList.add("show");
+            }
+        }
+
+    </script>
+</body>
+</html>

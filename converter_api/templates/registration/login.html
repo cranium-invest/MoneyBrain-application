@@ -3,20 +3,21 @@
 <head>
     <title>Login</title>
     {% load static %}
-    <link href="{% static 'css/trans.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 <body>
     <header class="header">
-        <a href="#" class="logo">Cranium</a>
+        <a href="#" class="logo">Money Brain <img src="{% static 'images/caraniumLog.png'%}" alt="Logo" class="logo-image"></a>
+
     
         <nav class="navbar">
-            <a href="{% url 'transfer' %}" style="--i:1" class="active">Make Payments</a>
-            <a href="{% url 'payout' %}" style="--i:2">Payout ZAZ</a>
-            <a href="{% url 'payout_form' %}" style="--i:2">Payout PayPal</a>
+            <a href="{% url 'eco_info' %}" style="--i:1">Eco Payments</a>
+            <a href="{% url 'payout' %}" style="--i:2">Payout AZA</a>
+            <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
             <a href="#" style="--i:3">Transactions History</a>
-            <a href="#" style="--i:4">Account</a>
+            <a href="{% url 'account_information' %}" style="--i:4" class="active">Account</a>
     
             {% if user.is_authenticated %}
                 <div class="dropdown">
@@ -30,11 +31,35 @@
             {% endif %}
         </nav>
     </header>
-    
+     
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>     
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>     
+    </p>
 
     <section class="login-container">
         <div class="login-form">
-            <h1>Login</h1>
+            <h4>Login To Money Brain account</h4>
             <form method="post">
                 {% csrf_token %}
                 <div class="form-group">
@@ -52,7 +77,7 @@
             </div>
             <div class="link">
                 <a href="{% url 'paypal_authorize'%}">
-                    <i class="fab fa-paypal" style="font-size: 24px; vertical-align: middle;"></i>
+                    <i class="fab fa-paypal" style="font-size: 24px; vertical-align: middle; color: #009df8;"></i>
                     Login with PayPal
                 </a>
             </div>
@@ -60,11 +85,9 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-content">
+        <div class="last-text-fot">
             <p>Cranium Money Transfer - Secure, Fast, and Reliable Currency Transfers Worldwide.</p>
-            <p>For assistance, contact our support team at <a href="https://cranium-invest.co.za/">admin@cranium-invest.co.za </a> or call us at +27 75 023 1943. &copy; 2024 Cranium. All rights reserved.</p>
+            <p>For assistance, contact our support team at <a href="https://cranium-invest.co.za/"><span class="e-span">admin@cranium-invest.co.za </span></a>or call us at +27 75 023 1943. &copy; 2024 Cranium. All rights reserved.</p>
         </div>
-    </footer>
 </body>
 </html>

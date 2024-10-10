@@ -14,6 +14,12 @@ from pathlib import Path
 
 import os
 
+import environ
+
+from dotenv import load_dotenv
+
+load_dotenv() 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -82,8 +88,12 @@ WSGI_APPLICATION = 'currency_surf.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'ayXPzvMxnOGMELfKiGzUhUpyGMCpNlqR',
+        'HOST': 'junction.proxy.rlwy.net',
+        'PORT': '15160',
     }
 }
 
@@ -147,11 +157,59 @@ PAYPAL_MODE = 'sandbox'
 import base64
 PAYPAL_AUTH_HEADER = base64.b64encode(f'{PAYPAL_CLIENT_ID}:{PAYPAL_CLIENT_SECRET}'.encode()).decode('utf-8')
 
-AZA_API_KEY = 'gDhUJ08ACADaESduvV9euaXqRE55r0hsUaUsxKkxwyPN1ES/yY6pdI1txn6lysEuZZIa5u0RQF8uflbBSoIpyA=='
-AZA_API_SECRET = 'DmJd4rwUU+h43klYes5okPFHpK1fwHE05wxi5ujneFqDMZT0beC+0Vk2yCwq5hB4WhCbGHqEPG8yixeqaVEUmA=='
-AZA_BASE_URL = 'https://api-sandbox.transferzero.com/v1'
+env = environ.Env()
+environ.Env.read_env()
 
-TRANSFERZERO_API_KEY = 'gDhUJ08ACADaESduvV9euaXqRE55r0hsUaUsxKkxwyPN1ES/yY6pdI1txn6lysEuZZIa5u0RQF8uflbBSoIpyA=='
-LOGIN_REDIRECT_URL = '/'
+API_KEY = env('API_KEY')
+API_SECRET = env('API_SECRET')
+BASE_URL = env('BASE_URL')
+URL = env('URL')
+COLLECTION_URL = env('COLLECTION_URL')
+TANSACTION_URL = env('TANSACTION_URL')
 
-LOGOUT_REDIRECT_URL = '/registration/login/'
+MONEYGRAM_API_KEY = ''
+
+GRASSHOPPER_API_KEY_ID = ''
+GRASSHOPPER_API_KEY_VALUE = ''
+GRASSHOPPER_API_URL = 'https://api.grasshopper.bank/check_deposit'
+
+ECOBANK_USER_ID= 'iamaunifieddev103'
+ECOBANK_PASSWORD = '$2a$10$Wmame.Lh1FJDCB4JJIxtx.3SZT0dP2XlQWgj9Q5UAGcDLpB0yRYCC'
+
+ECOBANK_SECRET_KEY = '$2a$10$Wmame.Lh1FJDCB4JJIxtx.3SZT0dP2XlQWgj9Q5UAGcDLpB0yRYCC'
+
+MOMO_PRIMARY_KEY = os.getenv("MOMO_PRIMARY_KEY")
+MOMO_SECONDARY_KEY = os.getenv("MOMO_SECONDARY_KEY")
+MOMO_BASE_URL = os.getenv("MOMO_BASE_URL")
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8ecd-102-23-211-36.ngrok-free.app',
+]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'converter_api': { 
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}

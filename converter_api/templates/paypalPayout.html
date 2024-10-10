@@ -4,34 +4,62 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/pal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ppal.css' %}">
     <title>PayPal Payouts</title>
 </head>
 <body>
-    <header class="header">
-        <a href="#" class="logo">Cranium</a>
+    <section>
+        <header class="header">
+            <a href="#" class="logo">Money Brain <img src="{% static 'images/caraniumLog.png'%}" alt="Logo" class="logo-image"></a>
     
-        <nav class="navbar">
-            <a href="{% url 'transfer' %}" class="active">Make Payments</a>
-            <a href="{% url 'payout' %}">Payout ZAZ</a>
-            <a href="{% url 'payout_form' %}">Payout PayPal</a>
-            <a href="#">Transactions History</a>
-            <a href="#">Account</a>
-
-            {% if user.is_authenticated %}
-                <div class="dropdown">
-                    <a href="#" id="user-menu">{{ user.username }}</a>
-                    <div class="dropdown-content">
-                        <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    
+            <nav class="navbar" id="navbar">
+                <a href="{% url 'eco_info' %}" style="--i:1">Eco Payments</a>
+                <a href="{% url 'payout' %}" style="--i:2">Payout AZA</a>
+                <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
+                <a href="{% url 'list_transactions'%}" style="--i:3">Transactions History</a>
+                <a href="{% url 'account_information' %}" style="--i:4" class="active">Account</a>
+    
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" id="user-menu">{{ user.username }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                        </div>
                     </div>
-                </div>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-            {% endif %}
-        </nav>
-    </header>
+                {% else %}
+                    <a href="{% url 'login' %}" style="--i:5">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+    </section>
+    <p>
+
+    </p>
+    <p>
+
+    </p>
+    <p>
+
+    </p>
+    <p>
+
+    </p>
+    <p>
+
+    </p>
+    <p>
+
+    </p>
+    <p>
+
+    </p>
+    <p>
+
+    </p>
     <main class="container">
-        <h1>PayPal Payouts</h1>
+        <h4>PayPal Payouts</h4>
         <form id="payoutForm">
             <fieldset>
                 <legend>Sender Batch Header</legend>
@@ -76,7 +104,7 @@
                     <label for="notification_language">Notification Language:</label>
                     <input type="text" id="notification_language" name="notification_language" value="en-US" class="input-field" required>
                 </div>
-                <!-- Add more .item divs for additional payout items -->
+                
             </fieldset>
 
             <button type="button" class="submit-button" onclick="submitPayoutForm()">Submit Payouts</button>
@@ -141,6 +169,18 @@
             return cookieValue;
         }
         
+    </script>
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.classList.contains("show")) {
+                navbar.classList.remove("show");
+            } else {
+                navbar.classList.add("show");
+            }
+        }
+
     </script>
 </body>
 </html>

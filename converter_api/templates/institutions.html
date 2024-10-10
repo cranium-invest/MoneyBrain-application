@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ecobank Institutions</title>
+</head>
+<body>
+    <h1>Get Ecobank Institutions</h1>
+    <form method="post" action="{% url 'eco_institution' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

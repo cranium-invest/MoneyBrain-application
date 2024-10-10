@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supported Affiliations</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Supported Affiliations</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Affiliate Code</th>
+                <th>Affiliate Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for code, name in affiliations %}
+                <tr>
+                    <td>{{ code }}</td>
+                    <td>{{ name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'payment' %}">Go to Payment Form</a>
+</body>
+</html>

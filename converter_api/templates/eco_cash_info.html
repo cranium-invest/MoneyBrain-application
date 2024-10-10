@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Eco-Cash-Payment-Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/stylemedia.css' %}">
+</head>
+<body>
+    
+    <section>
+        <header class="header">
+            <a href="#" class="logo">Money Brain <img src="{% static 'images/caraniumLog.png'%}" alt="Logo" class="logo-image"></a>
+    
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    
+            <nav class="navbar" id="navbar">
+                <a href="{% url 'eco_info' %}" style="--i:1">Eco Payments</a>
+                <a href="{% url 'payout' %}" style="--i:2">Payout AZA</a>
+                <a href="{% url 'payout_form' %}" style="--i:5">Payout PayPal</a>
+                <a href="{% url 'list_transactions'%}" style="--i:3">Transactions History</a>
+                <a href="{% url 'account_information' %}" style="--i:4" class="active">Account</a>
+    
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" id="user-menu">{{ user.username }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="logout-link">Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" style="--i:5">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+    </section>
+    
+    <br><br>
+    <br><br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <section class="notification-banner-a">
+        <div class="notification-content-a">
+            <p><i class="fas fa-info-circle" style="font-size: 1em; color: #ffffff;" title="Information"></i>
+                Money Brain is a leading global provider of money transfer and payment services, 
+            offering fast and secure international payouts.</p>
+        </div>
+    </section>
+
+    <div class="account-info-container">
+        <h4>Eco Cash Payment Information Page</h4>
+        <p>Here you can make transfers make Cross-Border Ecobank-To-Ecobank Payments</p>
+
+        <section class="links-section">
+            <ul>
+                <li><a href="#"><i class="fas fa-info-circle" style="font-size: 1em; color: #ff9f0f;" title="Information"></i> Check Eco Balance</a></li>
+                <li><a href="#"><i class="fas fa-info-circle" style="font-size: 1em; color: #7cf02f;" title="Information"></i> Add New Eco Cash Bank Account </a></li>
+            </ul>
+        </section>
+
+        <section class="links-section">
+            <h2>Perform Transactions</h2>
+            <ul>
+                <li><a href="#">Eco Cash Transactions History</a></li>
+                <li><a href="{% url 'ecobank_payment' %}">Transfer with Eco Cash  <i class="fas fa-info-circle" style="font-size: 1em; color: #ff9f0f;" title="Information"></i> <i>Investors In Zimbabwe</i></a></li>
+                <li><a href="{% url 'eco_inter' %}">Transfer with Cross-Border Xpress Token </a></li>
+                </ul>
+        </section>
+
+        <section class="links-section">
+            <h4>Make Collections with AZA</h4>
+            <ul>
+                <li><a href="{% url 'create_sender' %}">Create sender Account</a></li>
+                <li><a href="{% url 'initiate_collection' %}"><i class="fas fa-info-circle" style="font-size: 1em; color: #7cf02f;" title="Information"></i> Payout GHS Collection</a></li>
+                <li><i class="fas fa-info-circle" style="font-size: 1em; color: #f02f8f;" title="Information"></i><a href="{% url 'user_agreement' %}"> Cranium User agreement</a></li>
+                <li><i class="fas fa-info-circle" style="font-size: 1em; color: #f02f8f;" title="Information"></i><a href="{% url 'privacy_policy' %}"> Cranium Privacy policy</a></li>
+            </ul>
+        </section>
+    </div>
+    
+    <section id="notification-banner-d" class="notification-banner-d">
+        <div class="notification-content-d">
+            <p style="color: white;">
+                <i class="fas fa-info-circle" style="font-size: 1em; color: #ffffff;" title="Information"></i>
+                <a href="{% url 'get-senders' %}" class="notification-link-a">Get AZA Legible Transfering senders</a>
+                <span class="dismiss-btn" onclick="dismissNotification('notification-banner-d')">&times;</span>
+            </p>
+        </div>
+    </section>
+    
+    <section id="notification-banner-b" class="notification-banner-b">
+        <div class="notification-content-b">
+            <p style="color: white;">
+                <i class="fas fa-info-circle" style="font-size: 1em; color: #ffffff;" title="Information"></i>
+                <a href="{% url 'create_transaction' %}" class="notification-link">AZA Finances Collections Now Available</a>
+                <span class="dismiss-btn" onclick="dismissNotification('notification-banner-b')">&times;</span>
+            </p>
+        </div>
+    </section>
+    
+    <section id="notification-banner-c" class="notification-banner-c">
+        <div class="notification-content-c">
+            <p style="color: white;">
+                <i class="fas fa-info-circle" style="font-size: 1em; color: #ffffff;" title="Information"></i>
+                <a href="{% url 'create_transaction' %}" class="notification-link">AZA Bank Payments</a>
+                <span class="dismiss-btn" onclick="dismissNotification('notification-banner-c')">&times;</span>
+            </p>
+        </div>
+    </section>
+
+    <section id="notification-banner-o" class="notification-banner-o">
+        <div class="notification-content-o">
+        <button class="close-button" onclick="showNotification('notification-banner-d'); showNotification('notification-banner-b'); showNotification('notification-banner-c');">
+            Transfer Options
+        </button>
+    </div>
+    </section>
+    
+    
+    <div class="last-text-fot">
+        <p>The Check Deposit feature in the Cranium app provides a convenient way for users to deposit checks directly into their Cranium account using their mobile device or computer. </p>
+        <p>This feature allows users to streamline their banking activities by eliminating the need to visit a physical bank branch.</p>
+        <p>&copy; {{ current_year }} Cranium. All rights reserved.</p>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.classList.contains("show")) {
+                navbar.classList.remove("show");
+            } else {
+                navbar.classList.add("show");
+            }
+        }
+
+    </script>
+
+    <script>
+        function dismissNotification(bannerId) {
+            const banner = document.getElementById(bannerId);
+            banner.classList.add('hide');
+            
+            
+            localStorage.setItem(bannerId, 'hidden');
+        }
+
+        function showNotification(bannerId) {
+            const banner = document.getElementById(bannerId);
+            banner.classList.remove('hide');
+
+            localStorage.removeItem(bannerId);
+        }
+
+        window.onload = function() {
+            const banners = ['notification-banner-d', 'notification-banner-b', 'notification-banner-c'];
+            banners.forEach(bannerId => {
+                if (localStorage.getItem(bannerId) === 'hidden') {
+                    document.getElementById(bannerId).classList.add('hide');
+                }
+            });
+        };
+    </script>
+
+</body>
+</html>

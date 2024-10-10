@@ -31,8 +31,8 @@ body {
 }
 
 .navbar {
-    position: absolute; /* Move it to the top right */
-    top: 26px; /* Adjust this to move the navbar down as needed */
+    position: absolute;
+    top: 26px;
     right: 60px;
 }
 
@@ -47,6 +47,46 @@ body {
 
 .navbar a:hover {
     color: #ff6600;
+}
+
+
+.menu-icon {
+    display: none;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 26px;
+    right: 20px;
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        position: static;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333; 
+    }
+
+    .navbar a {
+        display: block;
+        margin: 10px 0;
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+
+    .menu-icon {
+        display: block;
+    }
+    
+
+    .navbar.show {
+        display: flex;
+    }
 }
 
 .home {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Details</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <h1>Transaction Details</h1>
+    <div class="transaction-info">
+        <p><strong>Transaction ID:</strong> {{ transaction_id }}</p>
+        <p><strong>Status:</strong> {{ transaction_state }}</p>
+        <p><strong>Input Amount:</strong> {{ input_amount }} {{ input_currency }}</p>
+        <p><strong>Output Amount:</strong> {{ output_amount }} {{ output_currency }}</p>
+        <p><strong>Exchange Rate:</strong> {{ exchange_rate }}</p>
+    </div>
+
+    <h2>Sender Information</h2>
+    <div class="sender-info">
+        <p><strong>Name:</strong> {{ sender_name }}</p>
+        <p><strong>Country:</strong> {{ sender_country }}</p>
+        <p><strong>City:</strong> {{ sender_city }}</p>
+        <p><strong>Phone:</strong> {{ sender_phone }}</p>
+        <p><strong>Email:</strong> {{ sender_email }}</p>
+    </div>
+
+    <h2>Recipient Information</h2>
+    <div class="recipient-info">
+        <p><strong>Name:</strong> {{ recipient_name }}</p>
+        <p><strong>Bank Name:</strong> {{ bank_name }}</p>
+        <p><strong>Bank Account:</strong> {{ bank_account }}</p>
+        <p><strong>Payout Method Type:</strong> {{ payout_method_type }}</p>
+    </div>
+</body>
+</html>

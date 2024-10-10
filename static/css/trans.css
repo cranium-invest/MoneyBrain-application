@@ -23,6 +23,19 @@ body {
     z-index: 1000;
 }
 
+.first-text {
+    width: 100%;
+    padding: 20px;
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
 .logo {
     font-size: 24px;
     font-weight: bold;
@@ -31,8 +44,8 @@ body {
 }
 
 .navbar {
-    position: absolute; /* Move it to the top right */
-    top: 26px; /* Adjust this to move the navbar down as needed */
+    position: absolute;
+    top: 26px;
     right: 60px;
 }
 
@@ -49,6 +62,46 @@ body {
     color: #ff6600;
 }
 
+
+.menu-icon {
+    display: none;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 26px;
+    right: 20px;
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        position: static;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333; 
+    }
+
+    .navbar a {
+        display: block;
+        margin: 10px 0;
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+
+    .menu-icon {
+        display: block;
+    }
+    
+
+    .navbar.show {
+        display: flex;
+    }
+}
+
 .home {
     text-align: center;
     background-color: #fff;
@@ -63,6 +116,10 @@ body {
 }
 
 .home span {
+    color: #ff6600;
+}
+
+.span {
     color: #ff6600;
 }
 
@@ -568,4 +625,137 @@ button[type="submit"]:hover {
     background: #333;
     font-weight: 300;
     margin-top: 70px;
+}
+
+.moneygram-container {
+    background-color: #fff;
+    padding: 40px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    max-width: 600px;
+    width: 100%;
+    margin: 100px auto;
+    box-sizing: border-box;
+    text-align: center;
+    overflow-y: auto; /* Enable vertical scroll */
+    max-height: 80vh; /* Limit the height for scrolling */
+    min-height: 600px; /* Set a minimum height to keep the container from becoming too small */
+}
+
+
+@media (max-height: 700px) {
+    .moneygram-container {
+        max-height: 80vh; /* Add height limit on shorter screens */
+    }
+}
+
+
+.moneygram-container h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.moneygram-form {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #fff;
+}
+
+.moneygram-form input[type="text"],
+.moneygram-form input[type="email"],
+.moneygram-form input[type="number"],
+.moneygram-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.moneygram-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.moneygram-form button[type="submit"]:hover {
+    background-color: #ff6600;;
+}
+
+/* Style the "This field is required" text */
+.moneygram-form .required-field-message {
+    font-size: 14px; /* Adjust the font size */
+    color: #e65c00; /* Set the color to match the design */
+    margin-top: 5px; /* Add some space between the field and the message */
+    margin-left: 0; /* Remove any indent or left margin */
+    list-style-type: none; /* Remove any bullet points or dots */
+    text-align: left; /* Align the text to the left */
+}
+
+/* Apply this class to the "This field is required" text in your HTML */
+
+/* Notification Banner Styles */
+.notification-banner {
+    background-color: #00ff62; /* Adjust background color as needed */
+    color: #ffffff; /* Text color */
+    padding: 10px 20px; /* Padding around the text */
+    border-radius: 10px; /* Rounded edges */
+    margin-bottom: 20px; /* Space between banner and content below */
+    text-align: center; /* Center align text */
+}
+
+.n-banner-g {
+    background-color: #ffbb00; /* Adjust background color as needed */
+    color: #ffffff; /* Text color */
+    padding: 10px 20px; /* Padding around the text */
+    border-radius: 10px; /* Rounded edges */
+    margin-bottom: 20px; /* Space between banner and content below */
+    text-align: center; /* Center align text */
+}
+
+.notification-content p {
+    margin: 0;
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+.notification-content a {
+    color: #ffffff; /* Link color */
+    text-decoration: underline; /* Underline the link */
+    font-weight: bold; /* Make link text bold */
+}
+
+.notification-content a:hover {
+    color: #333; /* Link color on hover */
+}
+
+.span-m {
+    color: #ff6600;
+}
+
+.grasshoper-container {
+
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    background-color: #f4f4f4;
+
+}
+
+.grasshoper-main {
+
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    background-color: #fff;
+
 }
